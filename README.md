@@ -1,0 +1,117 @@
+{
+  "type": "carousel",
+  "contents": [
+    {
+      "type": "bubble",
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+          {
+            "type": "image",
+            "url": "https://img5.pic.in.th/file/secure-sv1/inspiringbooks-ezgif.com-video-to-apng-converter.png",
+            "size": "full",
+            "animated": true,
+            "aspectMode": "cover",
+            "aspectRatio": "2.3:3",
+            "offsetBottom": "none"
+          },
+          {
+            "type": "button",
+            "action": {
+              "type": "uri",
+              "uri": "http://linecorp.com/",
+              "label": "    "
+            },
+            "position": "absolute",
+            "offsetTop": "85%",
+            "offsetEnd": "18%",
+            "gravity": "top",
+            "offsetStart": "15%",
+            "offsetBottom": "10%"
+          }
+        ],
+        "borderWidth": "none",
+        "paddingAll": "none"
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://img5.pic.in.th/file/secure-sv1/c08cbfd4a7cd331afb4edf3469264e72.png",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "2.9:3",
+        "animated": true,
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://youtube.com/shorts/g2wzVqKdBto?feature=shared"
+        }
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "backgroundColor": "#9370DB",
+        "contents": [
+          {
+            "type": "text",
+            "text": "Atomic Habits",
+            "weight": "bold",
+            "size": "md",
+            "color": "#4A148C",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "แนะนำโดย : นตท.เสฎฐวุฒิ สีดาธรรม ชั้นปีที่ ๒ ตอน ๑๑ เลขที่ ๓๑",
+            "size": "sm",
+            "color": "#6A1B9A",
+            "wrap": true
+          }
+        ],
+        "cornerRadius": "none"
+      }
+    },
+    {
+      "type": "bubble",
+      "hero": {
+        "type": "image",
+        "url": "https://img2.pic.in.th/pic/-1324f7bf19313de2.png",
+        "size": "full",
+        "aspectMode": "cover",
+        "aspectRatio": "2.9:3",
+        "animated": true,
+        "action": {
+          "type": "uri",
+          "label": "action",
+          "uri": "https://youtu.be/xlBtVMu36dw?si=mXRaXgDAQLcp3Yw-"
+        }
+      },
+      "body": {
+        "type": "box",
+        "layout": "vertical",
+        "backgroundColor": "#9370DB",
+        "contents": [
+          {
+            "type": "text",
+            "text": "25 วิธีคิดให้ชีวิตชิบหาย",
+            "weight": "bold",
+            "size": "md",
+            "color": "#4A148C",
+            "wrap": true
+          },
+          {
+            "type": "text",
+            "text": "แนะนำโดย : นตท.ศิวกร พรหมมา ชั้นปีที่ ๒ ตอน ๑๑ เลขที่ ๒๗",
+            "size": "sm",
+            "color": "#6A1B9A",
+            "wrap": true
+          }
+        ],
+        "cornerRadius": "none"
+      }
+    }
+  ]
+}
