@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Share Flex Message Ready</title>
+    <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: #eef2ff;
+        }
+        .msg {
+            display: none;
+            padding: 20px 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-size: 18px;
+            text-align: center;
+            color: #333;
+        }
+        #errorMsg { 
+            color: #d9534f;
+            word-break: break-word;
+            max-width: 80vw;
+        }
+    </style>
+</head>
+<body>
+    <div class="msg" id="loadingMsg">⏳ กำลังเริ่มต้น LIFF และเตรียมการแชร์...</div>
+    <div class="msg" id="successMsg">✅ แชร์ให้เพื่อน ๆ สำเร็จแล้ว</div>
+    <div class="msg" id="errorMsg">❌ เกิดข้อผิดพลาดในการแชร์</div> 
+
+    <script>
+        // --- แก้ไขโครงสร้าง Flex Message ให้ถูกต้อง ---
+        const flexMessage = {
+            type: "flex",
+            altText: "📚 แนะนำหนังสือน่าอ่าน โดย นตท.ชั้นปีที่ 2",
+            contents: {
+                type: "carousel",
+                contents: [
+                    {
+                        type: "bubble",
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            contents: [
+                                {
+                                    type: "image",
+                                    url: "https://img5.pic.in.th/file/secure-sv1/inspiringbooks-ezgif.com-video-to-apng-converter.png",
+                                    size: "full",
+                                    animated: true,
+                                    aspectMode: "cover",
+                                    aspectRatio: "2.3:3"
+                                },
+                                {
+                                    type: "button",
+                                    action: {
+                                        type: "uri",
+                                        uri: "https://liff.line.me/2008686521-LCQd7COp",
+                                        label: "แชร์ต่อ"
+                                    },
+                                    position: "absolute",
+                                    offsetTop: "85%",
+                                    offsetEnd: "18%",
+                                    offsetStart: "15%",
+                                    offsetBottom: "5%"
+                                }
+                            ],
+                            paddingAll: "none"
+                        }
+                    },
+                    {
+                        type: "bubble",
+                        hero: {
+                            type: "image",
+                            url: "https://img5.pic.in.th/file/secure-sv1/c08cbfd4a7cd331afb4edf3469264e72.png",
+                            size: "full",
+                            aspectMode: "cover",
+                            aspectRatio: "2.9:3",
+                            animated: true,
+                            action: {
+                                type: "uri",
+                                label: "action",
+                                uri: "https://youtube.com/shorts/g2wzVqKdBto?feature=shared"
+                            }
+                        },
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            backgroundColor: "#9370DB",
+                            contents: [
+                                {
+                                    type: "text",
+                                    text: "Atomic Habits",
+                                    weight: "bold",
+                                    size: "md",
+                                    color: "#4A148C",
+                                    wrap: true
+                                },
+                                {
+                                    type: "text",
+                                    text: "แนะนำโดย : นตท.เสฎฐวุฒิ สีดาธรรม ",
+                                    size: "sm",
+                                    color: "#6A1B9A",
+                                    wrap: true
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        type: "bubble",
+                        hero: {
+                            type: "image",
+                            url: "https://img2.pic.in.th/pic/-1324f7bf19313de2.png",
+                            size: "full",
+                            aspectMode: "cover",
+                            aspectRatio: "2.9:3",
+                            animated: true,
+                            action: {
+                                type: "uri",
+                                label: "action",
+                                uri: "https://youtu.be/xlBtVMu36dw?si=mXRaXgDAQLcp3Yw-"
+                            }
+                        },
+                        body: {
+                            type: "box",
+                            layout: "vertical",
+                            backgroundColor: "#9370DB",
+                            contents: [
+                                {
+                                    type: "text",
+                                    text: "25 วิธีคิดให้ชีวิตชิบหาย",
+                                    weight: "bold",
+                                    size: "md",
+                                    color: "#4A148C",
+                                    wrap: true
+                                },
+                                {
+                                    type: "text",
+                                    text: "แนะนำโดย : นตท.ศิวกร พรหมมา",
+                                    size: "sm",
+                                    color: "#6A1B9A",
+                                    wrap: true
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        };
+
+        function displayMessage(id) {
+            document.querySelectorAll('.msg').forEach(el => el.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        async function main() {
+            displayMessage('loadingMsg');
+            
+            try {
+                // ตรวจสอบ LIFF ID ให้ตรงกับที่สร้างใน LINE Developers Console
+                await liff.init({ liffId: "2008686521-LCQd7COp" });  
+
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                    return;
+                }
+                
+                if (!liff.isApiAvailable("shareTargetPicker")) {
+                    throw new Error("API shareTargetPicker ไม่รองรับ (โปรดเปิดในแอป LINE หรือตรวจสอบว่าเปิด Permission ใน Console แล้ว)");
+                }
+
+                const result = await liff.shareTargetPicker([flexMessage]);
+                
+                if (result) {
+                    displayMessage('successMsg');
+                    setTimeout(() => liff.closeWindow(), 2000);
+                } else {
+                    liff.closeWindow();
+                }
+
+            } catch (err) {
+                console.error("Share Error:", err);
+                const errorMsgElement = document.getElementById('errorMsg');
+                errorMsgElement.innerHTML = `❌ เกิดข้อผิดพลาด: <br> ${err.message || 'ไม่ทราบสาเหตุ'}`;
+                displayMessage('errorMsg'); 
+            }
+        }
+
+        main();
+    </script>
+</body>
+</html>
